@@ -2,175 +2,171 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Venkat ❤️ Hema</title>
+<title>Venkat ❤️ Hema - Season 2</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@300;400&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
-
 body{
 background:black;
 color:white;
-font-family:'Montserrat',sans-serif;
 overflow-x:hidden;
+font-family:'Montserrat',sans-serif;
 }
 
-/* STAR BACKGROUND */
-canvas{
+/* SMOKE OVERLAY */
+.smoke{
 position:fixed;
 top:0;
 left:0;
-z-index:-1;
+width:200%;
+height:200%;
+background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.05), transparent 60%);
+animation:smokeMove 25s linear infinite;
+pointer-events:none;
+z-index:1;
 }
 
-/* SECTION */
-section{
+@keyframes smokeMove{
+0%{transform:translate(0,0);}
+50%{transform:translate(-200px,-100px);}
+100%{transform:translate(0,0);}
+}
+
+/* INTRO */
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:100;
+transition:2s;
+}
+
+.netflix{
+font-family:'Cinzel',serif;
+font-size:80px;
+letter-spacing:10px;
+color:#e50914;
+animation:reveal 3s forwards;
+opacity:0;
+}
+
+@keyframes reveal{
+0%{letter-spacing:50px;opacity:0;filter:blur(10px);}
+100%{letter-spacing:10px;opacity:1;filter:blur(0);}
+}
+
+/* HERO */
+.hero{
 min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
-padding:60px 20px;
+opacity:0;
+transition:2s;
 }
 
-/* HEART */
-.heart{
-position:relative;
-width:140px;
-height:130px;
-margin-bottom:30px;
-transform:rotate(-45deg);
-background:#ff4d6d;
-animation:beat 1.2s infinite;
-}
+.hero.show{opacity:1;}
 
-.heart:before,
-.heart:after{
-content:"";
-position:absolute;
-width:140px;
-height:130px;
-background:#ff4d6d;
-border-radius:50%;
-}
-
-.heart:before{
-top:-70px;
-left:0;
-}
-
-.heart:after{
-left:70px;
-top:0;
-}
-
-@keyframes beat{
-0%{transform:rotate(-45deg) scale(1);}
-50%{transform:rotate(-45deg) scale(1.08);}
-100%{transform:rotate(-45deg) scale(1);}
-}
-
-/* NAME */
-.names{
-font-family:'Playfair Display',serif;
-font-size:42px;
+.hero h1{
+font-family:'Cinzel',serif;
+font-size:65px;
 margin-bottom:20px;
 }
 
-/* LOVE LETTER */
-.letter{
-max-width:700px;
-font-size:18px;
-line-height:1.9;
+.hero p{
+font-size:20px;
+opacity:0.8;
 }
 
-/* QUESTIONS */
-.questions{
-font-size:22px;
-line-height:2;
-font-family:'Dancing Script',cursive;
+/* SEASON TEXT */
+.season{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:60px;
+font-family:'Cinzel',serif;
+opacity:0;
+transition:2s;
 }
 
-/* GALLERY */
+/* MEMORIES */
+.memories{
+min-height:100vh;
+padding:80px 20px;
+text-align:center;
+}
+
+.memories h2{
+font-family:'Cinzel',serif;
+font-size:45px;
+margin-bottom:40px;
+}
+
 .gallery{
 display:grid;
-grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
-gap:25px;
-width:90%;
-max-width:1000px;
-margin-top:40px;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:30px;
+max-width:1100px;
+margin:auto;
 }
 
 .gallery img{
 width:100%;
-height:300px;
+height:350px;
 object-fit:cover;
-border-radius:18px;
-transition:0.4s;
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
+border-radius:15px;
+transition:0.6s;
 }
 
 .gallery img:hover{
-transform:translateY(-8px);
+transform:scale(1.05);
 }
 
-/* TITLE */
-.title{
-font-family:'Playfair Display',serif;
-font-size:38px;
-margin-bottom:20px;
+/* FADE BLACK */
+.fadeBlack{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:black;
+z-index:90;
+opacity:0;
+pointer-events:none;
+transition:1.5s;
 }
 </style>
 </head>
 
 <body>
 
-<canvas id="stars"></canvas>
+<div class="smoke"></div>
+<div class="fadeBlack" id="fade"></div>
 
-<!-- SECTION 1: HEART + NAME -->
-<section>
-<div class="heart"></div>
-<div class="names">Venkat ❤️ Hema</div>
-</section>
-
-<!-- SECTION 2: LOVE LETTER -->
-<section>
-<div class="title">My Love Letter 💙</div>
-<div class="letter">
-Two years ago, love entered my life quietly —  
-but it changed everything loudly inside my heart.<br><br>
-
-You became my peace in chaos,  
-my warmth in cold days,  
-and my strength when life felt heavy.<br><br>
-
-Every smile of yours feels like sunrise.  
-Every moment with you feels like home.<br><br>
-
-If I had to choose again,  
-in every lifetime,  
-I would still choose you. ❤️
+<div id="intro">
+<div class="netflix">VENKAT</div>
 </div>
+
+<section class="hero" id="hero">
+<h1>Venkat ❤️ Hema</h1>
+<p>A Love Story Beyond Time</p>
 </section>
 
-<!-- SECTION 3: LOVE QUESTIONS -->
-<section>
-<div class="title">Some Questions From My Heart 💌</div>
-<div class="questions">
-Will you walk beside me in every phase of life? 💫<br>
-Will you laugh with me on my happiest days? 😊<br>
-Will you hold my hand on my toughest days? 🤝<br>
-Will you build a forever with me? 💍<br>
-Will you stay… always? ❤️
-</div>
+<section class="season" id="season">
+Season 2 Begins…
 </section>
 
-<!-- SECTION 4: MEMORIES -->
-<section>
-<div class="title">Our Beautiful Memories 📸</div>
+<section class="memories">
+<h2>Our Beautiful Memories</h2>
 <div class="gallery">
 <img src="photo1.jpg">
 <img src="photo2.jpg">
@@ -183,32 +179,53 @@ Will you stay… always? ❤️
 <audio id="music" src="yourmusic.mp3" loop></audio>
 
 <script>
-// STAR BACKGROUND
-const canvas=document.getElementById("stars");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=window.innerHeight;
-
-let stars=[];
-for(let i=0;i<250;i++){
-stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
+// MUSIC FADE IN
+function fadeInMusic(){
+let music=document.getElementById("music");
+music.volume=0;
+music.play();
+let fade=setInterval(()=>{
+if(music.volume<1){
+music.volume+=0.02;
+}else{
+clearInterval(fade);
+}
+},200);
 }
 
-function drawStars(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="white";
-stars.forEach(s=>{
-ctx.beginPath();
-ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
-ctx.fill();
-});
+// TRAILER VOICE
+function trailerVoice(){
+let msg="In a world where love changed everything... this is their story.";
+let speech=new SpeechSynthesisUtterance(msg);
+speech.rate=0.9;
+speech.pitch=0.8;
+speechSynthesis.speak(speech);
 }
-setInterval(drawStars,50);
 
-// MUSIC
-document.body.addEventListener("click",function(){
-document.getElementById("music").play();
-},{once:true});
+// FADE TRANSITION
+function fadeToBlack(){
+let f=document.getElementById("fade");
+f.style.opacity=1;
+setTimeout(()=>{f.style.opacity=0;},1500);
+}
+
+// SEQUENCE
+setTimeout(()=>{
+document.getElementById("intro").style.opacity=0;
+fadeInMusic();
+trailerVoice();
+},3500);
+
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+document.getElementById("hero").classList.add("show");
+fadeToBlack();
+},6000);
+
+setTimeout(()=>{
+document.getElementById("season").style.opacity=1;
+fadeToBlack();
+},10000);
 </script>
 
 </body>
