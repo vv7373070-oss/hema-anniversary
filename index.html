@@ -4,44 +4,17 @@
 <meta charset="UTF-8">
 <title>Venkat ❤️ Hema</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@300;400&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+
 body{
-margin:0;
-overflow:hidden;
 background:black;
-font-family:'Montserrat',sans-serif;
 color:white;
-text-align:center;
-}
-
-/* INTRO SCREEN */
-#intro{
-position:fixed;
-width:100%;
-height:100vh;
-background:black;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-z-index:10;
-}
-
-.loader{
-width:60px;
-height:60px;
-border:6px solid #333;
-border-top:6px solid #ff4d6d;
-border-radius:50%;
-animation:spin 1s linear infinite;
-margin-bottom:20px;
-}
-
-@keyframes spin{
-100%{transform:rotate(360deg);}
+font-family:'Montserrat',sans-serif;
+overflow-x:hidden;
 }
 
 /* STAR BACKGROUND */
@@ -52,22 +25,23 @@ left:0;
 z-index:-1;
 }
 
-/* MAIN CENTER */
-.center{
-position:absolute;
-top:50%;
-left:50%;
-transform:translate(-50%,-50%);
-max-width:800px;
-padding:20px;
+/* SECTION */
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:60px 20px;
 }
 
-/* HEART SHAPE */
+/* HEART */
 .heart{
 position:relative;
-width:120px;
-height:110px;
-margin:auto;
+width:140px;
+height:130px;
+margin-bottom:30px;
 transform:rotate(-45deg);
 background:#ff4d6d;
 animation:beat 1.2s infinite;
@@ -77,152 +51,149 @@ animation:beat 1.2s infinite;
 .heart:after{
 content:"";
 position:absolute;
-width:120px;
-height:110px;
+width:140px;
+height:130px;
 background:#ff4d6d;
 border-radius:50%;
 }
 
 .heart:before{
-top:-60px;
+top:-70px;
 left:0;
 }
 
 .heart:after{
-left:60px;
+left:70px;
 top:0;
 }
 
 @keyframes beat{
 0%{transform:rotate(-45deg) scale(1);}
-50%{transform:rotate(-45deg) scale(1.1);}
+50%{transform:rotate(-45deg) scale(1.08);}
 100%{transform:rotate(-45deg) scale(1);}
 }
 
-/* TEXT */
+/* NAME */
 .names{
 font-family:'Playfair Display',serif;
-font-size:36px;
-margin-top:40px;
-opacity:0;
-transition:opacity 2s;
+font-size:42px;
+margin-bottom:20px;
 }
 
-.message{
-font-size:20px;
-margin-top:20px;
-line-height:1.7;
-opacity:0;
-transition:opacity 2s;
-max-height:250px;
-overflow-y:auto;
-}
-
-.countdown{
-margin-top:15px;
+/* LOVE LETTER */
+.letter{
+max-width:700px;
 font-size:18px;
-opacity:0;
-transition:opacity 2s;
+line-height:1.9;
 }
 
-button{
-margin-top:20px;
-padding:10px 25px;
-border-radius:30px;
-border:none;
-background:#ff4d6d;
-color:white;
-font-size:16px;
-cursor:pointer;
-opacity:0;
-transition:opacity 2s;
+/* QUESTIONS */
+.questions{
+font-size:22px;
+line-height:2;
+font-family:'Dancing Script',cursive;
 }
 
 /* GALLERY */
 .gallery{
-position:fixed;
-bottom:30px;
-width:100%;
-display:flex;
-justify-content:center;
-gap:12px;
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+gap:25px;
+width:90%;
+max-width:1000px;
+margin-top:40px;
 }
 
 .gallery img{
-width:120px;
-height:170px;
+width:100%;
+height:300px;
 object-fit:cover;
-border-radius:15px;
-opacity:0;
-transform:translateY(40px);
-transition:all 1s ease;
+border-radius:18px;
+transition:0.4s;
+box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* FIREWORK */
-.fire{
-position:fixed;
-width:6px;
-height:6px;
-border-radius:50%;
+.gallery img:hover{
+transform:translateY(-8px);
+}
+
+/* TITLE */
+.title{
+font-family:'Playfair Display',serif;
+font-size:38px;
+margin-bottom:20px;
 }
 </style>
 </head>
 
 <body>
 
-<!-- INTRO -->
-<div id="intro">
-<div class="loader"></div>
-<h2>Loading Your Love Story...</h2>
-</div>
-
 <canvas id="stars"></canvas>
 
-<div class="center">
+<!-- SECTION 1: HEART + NAME -->
+<section>
 <div class="heart"></div>
+<div class="names">Venkat ❤️ Hema</div>
+</section>
 
-<div class="names" id="names">Venkat ❤️ Hema</div>
+<!-- SECTION 2: LOVE LETTER -->
+<section>
+<div class="title">My Love Letter 💙</div>
+<div class="letter">
+Two years ago, love entered my life quietly —  
+but it changed everything loudly inside my heart.<br><br>
 
-<div class="message" id="message">
-My Hema 💙<br><br>
-Two years ago, love entered my life quietly — but it changed everything loudly inside my heart.<br><br>
-You didn’t just become part of my life… you became the reason my days feel lighter, my nights feel warmer, and my future feels brighter.<br><br>
-With you, love is not just excitement — it is comfort, safety, and peace.<br><br>
-When the world feels heavy, your voice becomes my calm.  
-When life feels uncertain, your presence becomes my strength.<br><br>
-If I had to choose again, in every lifetime, in every universe, I would still choose you. ❤️
+You became my peace in chaos,  
+my warmth in cold days,  
+and my strength when life felt heavy.<br><br>
+
+Every smile of yours feels like sunrise.  
+Every moment with you feels like home.<br><br>
+
+If I had to choose again,  
+in every lifetime,  
+I would still choose you. ❤️
 </div>
+</section>
 
-<div class="countdown" id="countdown"></div>
-
-<button id="marryBtn" onclick="launchFireworks()">Will You Marry Me? 💍</button>
+<!-- SECTION 3: LOVE QUESTIONS -->
+<section>
+<div class="title">Some Questions From My Heart 💌</div>
+<div class="questions">
+Will you walk beside me in every phase of life? 💫<br>
+Will you laugh with me on my happiest days? 😊<br>
+Will you hold my hand on my toughest days? 🤝<br>
+Will you build a forever with me? 💍<br>
+Will you stay… always? ❤️
 </div>
+</section>
 
+<!-- SECTION 4: MEMORIES -->
+<section>
+<div class="title">Our Beautiful Memories 📸</div>
 <div class="gallery">
-<img src="photo1.jpg" id="p1">
-<img src="photo2.jpg" id="p2">
-<img src="photo3.jpg" id="p3">
-<img src="photo4.jpg" id="p4">
-<img src="photo5.jpg" id="p5">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo5.jpg">
 </div>
+</section>
 
 <audio id="music" src="yourmusic.mp3" loop></audio>
 
 <script>
-// INTRO
-setTimeout(()=>{
-document.getElementById("intro").style.display="none";
-},3000);
-
-// STARS
+// STAR BACKGROUND
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
+
 let stars=[];
 for(let i=0;i<250;i++){
 stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
 }
+
 function drawStars(){
 ctx.clearRect(0,0,canvas.width,canvas.height);
 ctx.fillStyle="white";
@@ -233,49 +204,6 @@ ctx.fill();
 });
 }
 setInterval(drawStars,50);
-
-// SEQUENCE
-setTimeout(()=>{document.getElementById("names").style.opacity=1;},3500);
-setTimeout(()=>{document.getElementById("message").style.opacity=1;},4500);
-setTimeout(()=>{document.getElementById("countdown").style.opacity=1;},5000);
-setTimeout(()=>{document.getElementById("marryBtn").style.opacity=1;},5500);
-
-// COUNTDOWN
-function updateCountdown(){
-let start=new Date("2024-02-20"); // change your real date
-let now=new Date();
-let diff=Math.floor((now-start)/(1000*60*60*24));
-document.getElementById("countdown").innerText=diff+" Days Together ❤️";
-}
-setInterval(updateCountdown,1000);
-updateCountdown();
-
-// PHOTO POP
-setTimeout(()=>{showPhoto("p1");},6000);
-setTimeout(()=>{showPhoto("p2");},7000);
-setTimeout(()=>{showPhoto("p3");},8000);
-setTimeout(()=>{showPhoto("p4");},9000);
-setTimeout(()=>{showPhoto("p5");},10000);
-
-function showPhoto(id){
-let img=document.getElementById(id);
-img.style.opacity=1;
-img.style.transform="translateY(0)";
-}
-
-// FIREWORKS
-function launchFireworks(){
-for(let i=0;i<150;i++){
-let f=document.createElement("div");
-f.className="fire";
-f.style.left=Math.random()*100+"vw";
-f.style.top=Math.random()*60+"vh";
-f.style.background="hsl("+Math.random()*360+",100%,50%)";
-document.body.appendChild(f);
-setTimeout(()=>f.remove(),1000);
-}
-alert("Forever With You ❤️");
-}
 
 // MUSIC
 document.body.addEventListener("click",function(){
