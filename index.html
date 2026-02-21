@@ -2,256 +2,258 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Hema 💙 Venkat | Forever By The Sea</title>
+<title>Venkat ❤️ Hema</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-html{scroll-behavior:smooth;}
 body{
+overflow:hidden;
 font-family:'Montserrat',sans-serif;
 color:white;
-overflow-x:hidden;
 background:black;
+text-align:center;
 }
 
-/* VIDEO BACKGROUND */
-#bgVideo{
+/* UNIVERSE */
+canvas{
 position:fixed;
-right:0;
-bottom:0;
-min-width:100%;
-min-height:100%;
-object-fit:cover;
-z-index:-3;
-}
-
-/* DARK OVERLAY */
-.overlay{
-position:fixed;
-width:100%;
-height:100%;
-background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+top:0;
+left:0;
 z-index:-2;
 }
 
-/* SECTION STYLE */
-section{
-min-height:100vh;
-display:flex;
-flex-direction:column;
-justify-content:center;
-align-items:center;
-text-align:center;
-padding:60px 20px;
+/* CENTER */
+.center{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
 }
 
-/* HEADINGS */
-h1{
-font-family:'Playfair Display',serif;
-font-size:60px;
-margin-bottom:20px;
+/* HEART OPEN EFFECT */
+.heart-container{
+position:relative;
+width:150px;
+height:150px;
+margin:auto;
 }
 
-h2{
-font-family:'Playfair Display',serif;
-font-size:40px;
-margin-bottom:20px;
+.heart-half{
+position:absolute;
+width:75px;
+height:150px;
+background:red;
+border-radius:75px 75px 0 0;
+}
+
+.left{
+left:0;
+transform-origin:right;
+animation:openLeft 2s forwards;
+}
+
+.right{
+right:0;
+transform-origin:left;
+animation:openRight 2s forwards;
+}
+
+@keyframes openLeft{
+0%{transform:rotate(0);}
+100%{transform:rotate(-45deg);}
+}
+
+@keyframes openRight{
+0%{transform:rotate(0);}
+100%{transform:rotate(45deg);}
 }
 
 /* TEXT */
-p{
-max-width:800px;
-line-height:1.8;
-font-size:20px;
+.names{
+font-family:'Playfair Display',serif;
+font-size:40px;
+margin-top:20px;
+opacity:0;
+transition:opacity 2s;
 }
 
-/* TIMELINE */
-.timeline{
-max-width:800px;
-margin-top:40px;
-text-align:left;
+.message{
+font-size:28px;
+margin-top:20px;
 }
-.timeline div{
-margin:25px 0;
-padding-left:20px;
-border-left:2px solid rgba(255,255,255,0.4);
+
+.countdown{
+margin-top:15px;
+font-size:20px;
 }
 
 /* GALLERY */
 .gallery{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-width:90%;
-margin-top:40px;
-}
-.gallery img{
+position:fixed;
+bottom:40px;
 width:100%;
-height:350px;
+display:flex;
+justify-content:center;
+gap:20px;
+}
+
+.gallery img{
+width:150px;
+height:200px;
 object-fit:cover;
 border-radius:15px;
-transition:0.4s;
-}
-.gallery img:hover{
-transform:scale(1.05);
-}
-
-/* LOVE LETTER */
-.letter{
-font-family:'Dancing Script',cursive;
-font-size:28px;
-max-width:800px;
-margin-top:30px;
-line-height:1.8;
+opacity:0;
+transform:translateY(50px);
+transition:all 1s ease;
 }
 
-/* BUTTON */
-button{
-margin-top:30px;
-padding:12px 35px;
-border-radius:40px;
-border:1px solid white;
-background:transparent;
-color:white;
-font-size:16px;
-cursor:pointer;
-transition:0.4s;
-}
-button:hover{
-background:white;
-color:black;
-}
-
-/* SPARKLES */
-.sparkle{
+/* FIREWORKS */
+.firework{
 position:fixed;
-width:3px;
-height:3px;
-background:white;
+width:5px;
+height:5px;
 border-radius:50%;
-opacity:0.6;
-animation:rise 10s linear infinite;
-}
-@keyframes rise{
-0%{transform:translateY(100vh);opacity:0;}
-50%{opacity:0.8;}
-100%{transform:translateY(-10vh);opacity:0;}
 }
 
-/* PROPOSAL MODAL */
-#proposal{
-display:none;
+button{
+margin-top:25px;
+padding:10px 25px;
+border-radius:30px;
+border:none;
+background:#ff4d6d;
+color:white;
+cursor:pointer;
+font-size:16px;
+}
+
+/* KISS */
+.kiss{
 position:fixed;
-width:100%;
-height:100%;
-background:rgba(0,0,0,0.9);
-justify-content:center;
-align-items:center;
-flex-direction:column;
-z-index:10;
+font-size:25px;
+animation:fall 5s linear infinite;
+}
+@keyframes fall{
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(110vh);}
 }
 </style>
 </head>
 
 <body>
 
-<!-- OCEAN VIDEO -->
-<video autoplay muted loop playsinline id="bgVideo">
-  <source src="ocean.mp4" type="video/mp4">
-</video>
+<canvas id="stars"></canvas>
 
-<div class="overlay"></div>
-
-<!-- HERO -->
-<section>
-<h1>Hema Dharshini</h1>
-<p>
-Like the ocean meeting the horizon,
-our love feels infinite.
-Two beautiful years of laughter, growth,
-understanding and peace.
-</p>
-<button onclick="openProposal()">Will You Stay With Me Forever?</button>
-<button onclick="readLetter()">Hear My Heart 💙</button>
-</section>
-
-<!-- TIMELINE -->
-<section>
-<h2>Our Journey</h2>
-<div class="timeline">
-<div><strong>Day One:</strong> A simple conversation that changed everything.</div>
-<div><strong>First Month:</strong> Long calls and endless smiles.</div>
-<div><strong>One Year:</strong> Stronger, deeper, closer.</div>
-<div><strong>Today:</strong> Two beautiful years by the sea.</div>
+<div class="center">
+<div class="heart-container">
+<div class="heart-half left"></div>
+<div class="heart-half right"></div>
 </div>
-</section>
 
-<!-- GALLERY -->
-<section>
-<h2>Our Moments</h2>
+<div class="names" id="names">Venkat ❤️ Hema</div>
+<div class="message" id="typing"></div>
+<div class="countdown" id="countdown"></div>
+<button onclick="marryMe()">Will You Marry Me? 💍</button>
+</div>
+
 <div class="gallery">
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo3.jpg">
-<img src="photo4.jpg">
-<img src="photo5.jpg">
-</div>
-</section>
-
-<!-- LOVE LETTER -->
-<section>
-<h2>My Letter To You</h2>
-<div class="letter">
-Hema,  
-You are my calm after every storm,  
-my golden sunset after every long day.  
-These two years are only the beginning  
-of a lifetime I want to spend beside you.  
-Forever, by the sea, with you.
-</div>
-</section>
-
-<!-- PROPOSAL -->
-<div id="proposal">
-<h1>Forever Begins With You 💍</h1>
-<button onclick="closeProposal()">Always ❤️</button>
+<img src="photo1.jpg" id="p1">
+<img src="photo2.jpg" id="p2">
+<img src="photo3.jpg" id="p3">
+<img src="photo4.jpg" id="p4">
+<img src="photo5.jpg" id="p5">
 </div>
 
 <audio id="music" src="yourmusic.mp3" loop></audio>
 
 <script>
-// AUTO MUSIC AFTER FIRST CLICK
+// STARS
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
+let stars=[];
+for(let i=0;i<300;i++){
+stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
+}
+function drawStars(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+stars.forEach(s=>{
+ctx.beginPath();
+ctx.arc(s.x,s.y,s.r,0,Math.PI*2);
+ctx.fill();
+});
+}
+setInterval(drawStars,50);
+
+// SEQUENCE
+setTimeout(()=>{document.getElementById("names").style.opacity=1;},2000);
+
+// TYPING EFFECT
+let text="Happy 2 Beautiful Years My Love 💙 Forever Begins With You.";
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,50);
+}}
+setTimeout(type,3000);
+
+// COUNTDOWN
+function updateCountdown(){
+let start=new Date("2024-02-20"); // change your real date
+let now=new Date();
+let diff=Math.floor((now-start)/(1000*60*60*24));
+document.getElementById("countdown").innerText=diff+" Days Together ❤️";
+}
+setInterval(updateCountdown,1000);
+updateCountdown();
+
+// PHOTO CINEMATIC
+setTimeout(()=>{document.getElementById("p1").style.opacity=1;document.getElementById("p1").style.transform="translateY(0)";},5000);
+setTimeout(()=>{document.getElementById("p2").style.opacity=1;document.getElementById("p2").style.transform="translateY(0)";},6000);
+setTimeout(()=>{document.getElementById("p3").style.opacity=1;document.getElementById("p3").style.transform="translateY(0)";},7000);
+setTimeout(()=>{document.getElementById("p4").style.opacity=1;document.getElementById("p4").style.transform="translateY(0)";},8000);
+setTimeout(()=>{document.getElementById("p5").style.opacity=1;document.getElementById("p5").style.transform="translateY(0)";startKissRain();},9000);
+
+// FIREWORKS
+function launchFireworks(){
+for(let i=0;i<200;i++){
+let f=document.createElement("div");
+f.className="firework";
+f.style.left=Math.random()*100+"vw";
+f.style.top=Math.random()*50+"vh";
+f.style.background="hsl("+Math.random()*360+",100%,50%)";
+document.body.appendChild(f);
+setTimeout(()=>f.remove(),1000);
+}
+}
+
+// KISS RAIN
+function startKissRain(){
+setInterval(()=>{
+let kiss=document.createElement("div");
+kiss.className="kiss";
+kiss.innerHTML="😘";
+kiss.style.left=Math.random()*100+"vw";
+document.body.appendChild(kiss);
+setTimeout(()=>kiss.remove(),5000);
+},300);
+}
+
+// MARRY BUTTON
+function marryMe(){
+launchFireworks();
+alert("She Said YES ❤️");
+}
+
+// MUSIC
 document.body.addEventListener("click",function(){
 document.getElementById("music").play();
 },{once:true});
-
-// SPARKLE ANIMATION
-setInterval(()=>{
-let s=document.createElement("div");
-s.className="sparkle";
-s.style.left=Math.random()*100+"vw";
-document.body.appendChild(s);
-setTimeout(()=>s.remove(),10000);
-},500);
-
-// PROPOSAL
-function openProposal(){
-document.getElementById("proposal").style.display="flex";
-}
-function closeProposal(){
-document.getElementById("proposal").style.display="none";
-}
-
-// AI VOICE
-function readLetter(){
-let msg="Hema, you are my calm after every storm and my forever by the sea. I love you endlessly.";
-let speech=new SpeechSynthesisUtterance(msg);
-speech.rate=0.9;
-speech.pitch=1;
-window.speechSynthesis.speak(speech);
-}
 </script>
 
 </body>
