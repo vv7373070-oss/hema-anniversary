@@ -2,154 +2,163 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Hema 💙 Venkat | 2 Years of Love</title>
+<title>Hema 💙 Venkat | Infinite</title>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;600&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Poppins',sans-serif;}
-body{background:black;color:white;overflow:hidden;text-align:center;}
+body{background:black;color:white;overflow-x:hidden;text-align:center;}
 
-#lock{
-position:fixed;width:100%;height:100vh;background:black;
-display:flex;flex-direction:column;justify-content:center;align-items:center;
+canvas{
+position:fixed;
+top:0;
+left:0;
+z-index:-1;
 }
 
-input{padding:12px;border-radius:25px;border:none;text-align:center;}
-button{padding:10px 20px;border:none;border-radius:25px;background:#00c6ff;color:black;font-weight:bold;margin-top:15px;cursor:pointer;}
+section{
+min-height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+padding:40px;
+}
 
-#main{display:none;overflow-y:auto;height:100vh;background:linear-gradient(135deg,#001f3f,#005bea,#00c6ff);}
-section{min-height:100vh;display:flex;flex-direction:column;justify-content:center;align-items:center;padding:40px;}
 h1{font-size:45px;margin-bottom:20px;}
-p{max-width:800px;line-height:1.9;font-size:18px;margin-bottom:15px;}
+p{max-width:800px;line-height:1.8;font-size:18px;}
 
-.gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;width:90%;}
-.gallery img{width:100%;height:300px;object-fit:cover;border-radius:15px;transition:0.4s;}
-.gallery img:hover{transform:scale(1.05);}
+.gallery img{
+width:250px;height:300px;
+object-fit:cover;border-radius:15px;
+margin:10px;cursor:pointer;
+transition:0.4s;
+}
+.gallery img:hover{transform:scale(1.1);}
 
-.timeline{max-width:800px;text-align:left;}
-.timeline div{margin:20px 0;padding:15px;background:rgba(255,255,255,0.1);border-radius:15px;}
+#lightbox{
+position:fixed;
+top:0;left:0;
+width:100%;height:100%;
+background:rgba(0,0,0,0.9);
+display:none;
+justify-content:center;
+align-items:center;
+}
+#lightbox img{
+max-width:80%;
+max-height:80%;
+border-radius:20px;
+}
 
-.heart{position:fixed;color:red;font-size:20px;animation:float 6s linear infinite;}
-@keyframes float{0%{transform:translateY(100vh);}100%{transform:translateY(-10vh);}}
+button{
+padding:12px 25px;
+border:none;border-radius:30px;
+background:#00f0ff;color:black;
+font-weight:bold;cursor:pointer;
+margin-top:20px;
+}
 
-footer{padding:20px;background:#000;}
-
-.musicBtn{position:fixed;bottom:20px;right:20px;background:white;color:black;padding:10px 15px;border-radius:50px;font-weight:bold;}
-
+.hidden-message{
+position:fixed;
+bottom:10px;
+right:10px;
+font-size:12px;
+color:#555;
+cursor:pointer;
+}
 </style>
 </head>
 
 <body>
 
-<!-- PASSWORD SCREEN -->
-<div id="lock">
-<h1>Enter Secret Password 💙</h1>
-<input type="password" id="pass" placeholder="Hint: Favorite Color">
-<button onclick="unlock()">Unlock</button>
-<p id="error" style="color:red;"></p>
-</div>
-
-<!-- MAIN WEBSITE -->
-<div id="main">
+<canvas id="stars"></canvas>
 
 <section>
 <h1>Happy 2nd Anniversary 💙</h1>
 <h2>Hema Dharshini ❤️</h2>
-<p id="dayCount"></p>
-<p>
-Two years ago, we started something beautiful.
-What began as simple conversations turned into the strongest bond of my life.
-Through every laugh, every small misunderstanding, every late-night talk —
-we didn’t just stay in love, we grew in love.
-</p>
+<p id="typing"></p>
+<button onclick="startMusic()">Play Our Song 🎵</button>
 </section>
 
 <section>
-<h1>Our Journey Timeline ✨</h1>
-<div class="timeline">
-<div><strong>Day 1:</strong> Our first conversation 💬</div>
-<div><strong>First Month:</strong> Long calls & endless smiles 😊</div>
-<div><strong>1 Year:</strong> Stronger than ever 💪</div>
-<div><strong>Today:</strong> 2 Years of unstoppable love ❤️</div>
-</div>
-</section>
-
-<section>
-<h1>Our Beautiful Memories 📸</h1>
+<h1>Our Beautiful Moments 📸</h1>
 <div class="gallery">
-<img src="photo1.jpg">
-<img src="photo2.jpg">
-<img src="photo3.jpg">
-<img src="photo4.jpg">
-<img src="photo5.jpg">
+<img src="photo1.jpg" onclick="openLightbox(this)">
+<img src="photo2.jpg" onclick="openLightbox(this)">
+<img src="photo3.jpg" onclick="openLightbox(this)">
+<img src="photo4.jpg" onclick="openLightbox(this)">
+<img src="photo5.jpg" onclick="openLightbox(this)">
 </div>
-<p>Every picture holds a story. Every story holds my heart.</p>
 </section>
 
-<section>
-<h1>My Promise to You 💍</h1>
-<p>
-Hema, you are my peace in chaos, my strength in weakness,
-and the most beautiful part of my life.
-I promise to stand beside you in every situation.
-I promise loyalty, respect, growth, and unconditional love.
-Version 2.0 completed successfully ✅
-Next update: Lifetime Together ❤️
-</p>
-</section>
-
-<footer>
-Forever Yours, <br>
-Venkat 💻❤️
-</footer>
-
+<div id="lightbox" onclick="closeLightbox()">
+<img id="lightbox-img">
 </div>
 
-<button class="musicBtn" onclick="toggleMusic()">Music 🎵</button>
+<div class="hidden-message" onclick="secretMessage()">
+💙
+</div>
 
-<audio id="music" loop>
-<source src="yourmusic.mp3" type="audio/mpeg">
-</audio>
+<audio id="music" src="yourmusic.mp3" loop></audio>
 
 <script>
+// 🌌 STAR GALAXY BACKGROUND
+const canvas=document.getElementById("stars");
+const ctx=canvas.getContext("2d");
+canvas.width=window.innerWidth;
+canvas.height=window.innerHeight;
 
-function unlock(){
-let p=document.getElementById("pass").value;
-if(p.toLowerCase()=="blue"){
-document.getElementById("lock").style.display="none";
-document.getElementById("main").style.display="block";
-document.body.style.overflow="auto";
-startHearts();
-calculateDays();
-}else{
-document.getElementById("error").innerText="Wrong Password 💙 Try Again";
-}
-}
-
-function calculateDays(){
-let start=new Date("2024-02-20"); // change your real date
-let today=new Date();
-let diff=Math.floor((today-start)/(1000*60*60*24));
-document.getElementById("dayCount").innerText=diff+" Days of Beautiful Togetherness 💙";
+let stars=[];
+for(let i=0;i<200;i++){
+stars.push({
+x:Math.random()*canvas.width,
+y:Math.random()*canvas.height,
+radius:Math.random()*2
+});
 }
 
-function startHearts(){
-setInterval(()=>{
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),6000);
-},400);
+function drawStars(){
+ctx.clearRect(0,0,canvas.width,canvas.height);
+ctx.fillStyle="white";
+stars.forEach(star=>{
+ctx.beginPath();
+ctx.arc(star.x,star.y,star.radius,0,Math.PI*2);
+ctx.fill();
+});
+}
+setInterval(drawStars,50);
+
+// ⌨ TYPING EFFECT
+let text="Hema, these 2 years are the most beautiful part of my life. You are my peace, my happiness, and my forever. I love you endlessly 💙";
+let i=0;
+function type(){
+if(i<text.length){
+document.getElementById("typing").innerHTML+=text.charAt(i);
+i++;
+setTimeout(type,40);
+}
+}
+type();
+
+// 🎵 MUSIC
+function startMusic(){
+document.getElementById("music").play();
 }
 
-function toggleMusic(){
-let m=document.getElementById("music");
-if(m.paused){m.play();}
-else{m.pause();}
+// 🖼 LIGHTBOX
+function openLightbox(img){
+document.getElementById("lightbox").style.display="flex";
+document.getElementById("lightbox-img").src=img.src;
+}
+function closeLightbox(){
+document.getElementById("lightbox").style.display="none";
 }
 
+// 💌 SECRET MESSAGE
+function secretMessage(){
+alert("You found the hidden message 💙\nForever starts and ends with you ❤️");
+}
 </script>
 
 </body>
