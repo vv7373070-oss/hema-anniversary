@@ -9,152 +9,193 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 body{
+margin:0;
 overflow:hidden;
+background:black;
 font-family:'Montserrat',sans-serif;
 color:white;
-background:black;
 text-align:center;
 }
 
-/* UNIVERSE */
+/* INTRO SCREEN */
+#intro{
+position:fixed;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+z-index:10;
+}
+
+.loader{
+width:60px;
+height:60px;
+border:6px solid #333;
+border-top:6px solid #ff4d6d;
+border-radius:50%;
+animation:spin 1s linear infinite;
+margin-bottom:20px;
+}
+
+@keyframes spin{
+100%{transform:rotate(360deg);}
+}
+
+/* STAR BACKGROUND */
 canvas{
 position:fixed;
 top:0;
 left:0;
-z-index:-2;
+z-index:-1;
 }
 
-/* CENTER */
+/* MAIN CENTER */
 .center{
 position:absolute;
 top:50%;
 left:50%;
 transform:translate(-50%,-50%);
+max-width:800px;
+padding:20px;
 }
 
-/* HEART OPEN EFFECT */
-.heart-container{
+/* HEART SHAPE */
+.heart{
 position:relative;
-width:150px;
-height:150px;
+width:120px;
+height:110px;
 margin:auto;
+transform:rotate(-45deg);
+background:#ff4d6d;
+animation:beat 1.2s infinite;
 }
 
-.heart-half{
+.heart:before,
+.heart:after{
+content:"";
 position:absolute;
-width:75px;
-height:150px;
-background:red;
-border-radius:75px 75px 0 0;
+width:120px;
+height:110px;
+background:#ff4d6d;
+border-radius:50%;
 }
 
-.left{
+.heart:before{
+top:-60px;
 left:0;
-transform-origin:right;
-animation:openLeft 2s forwards;
 }
 
-.right{
-right:0;
-transform-origin:left;
-animation:openRight 2s forwards;
+.heart:after{
+left:60px;
+top:0;
 }
 
-@keyframes openLeft{
-0%{transform:rotate(0);}
-100%{transform:rotate(-45deg);}
-}
-
-@keyframes openRight{
-0%{transform:rotate(0);}
-100%{transform:rotate(45deg);}
+@keyframes beat{
+0%{transform:rotate(-45deg) scale(1);}
+50%{transform:rotate(-45deg) scale(1.1);}
+100%{transform:rotate(-45deg) scale(1);}
 }
 
 /* TEXT */
 .names{
 font-family:'Playfair Display',serif;
-font-size:40px;
-margin-top:20px;
+font-size:36px;
+margin-top:40px;
 opacity:0;
 transition:opacity 2s;
 }
 
 .message{
-font-size:28px;
+font-size:20px;
 margin-top:20px;
+line-height:1.7;
+opacity:0;
+transition:opacity 2s;
+max-height:250px;
+overflow-y:auto;
 }
 
 .countdown{
 margin-top:15px;
-font-size:20px;
-}
-
-/* GALLERY */
-.gallery{
-position:fixed;
-bottom:40px;
-width:100%;
-display:flex;
-justify-content:center;
-gap:20px;
-}
-
-.gallery img{
-width:150px;
-height:200px;
-object-fit:cover;
-border-radius:15px;
+font-size:18px;
 opacity:0;
-transform:translateY(50px);
-transition:all 1s ease;
-}
-
-/* FIREWORKS */
-.firework{
-position:fixed;
-width:5px;
-height:5px;
-border-radius:50%;
+transition:opacity 2s;
 }
 
 button{
-margin-top:25px;
+margin-top:20px;
 padding:10px 25px;
 border-radius:30px;
 border:none;
 background:#ff4d6d;
 color:white;
-cursor:pointer;
 font-size:16px;
+cursor:pointer;
+opacity:0;
+transition:opacity 2s;
 }
 
-/* KISS */
-.kiss{
+/* GALLERY */
+.gallery{
 position:fixed;
-font-size:25px;
-animation:fall 5s linear infinite;
+bottom:30px;
+width:100%;
+display:flex;
+justify-content:center;
+gap:12px;
 }
-@keyframes fall{
-0%{transform:translateY(-10vh);}
-100%{transform:translateY(110vh);}
+
+.gallery img{
+width:120px;
+height:170px;
+object-fit:cover;
+border-radius:15px;
+opacity:0;
+transform:translateY(40px);
+transition:all 1s ease;
+}
+
+/* FIREWORK */
+.fire{
+position:fixed;
+width:6px;
+height:6px;
+border-radius:50%;
 }
 </style>
 </head>
 
 <body>
 
+<!-- INTRO -->
+<div id="intro">
+<div class="loader"></div>
+<h2>Loading Your Love Story...</h2>
+</div>
+
 <canvas id="stars"></canvas>
 
 <div class="center">
-<div class="heart-container">
-<div class="heart-half left"></div>
-<div class="heart-half right"></div>
-</div>
+<div class="heart"></div>
 
 <div class="names" id="names">Venkat ❤️ Hema</div>
-<div class="message" id="typing"></div>
+
+<div class="message" id="message">
+My Hema 💙<br><br>
+Two years ago, love entered my life quietly — but it changed everything loudly inside my heart.<br><br>
+You didn’t just become part of my life… you became the reason my days feel lighter, my nights feel warmer, and my future feels brighter.<br><br>
+With you, love is not just excitement — it is comfort, safety, and peace.<br><br>
+When the world feels heavy, your voice becomes my calm.  
+When life feels uncertain, your presence becomes my strength.<br><br>
+If I had to choose again, in every lifetime, in every universe, I would still choose you. ❤️
+</div>
+
 <div class="countdown" id="countdown"></div>
-<button onclick="marryMe()">Will You Marry Me? 💍</button>
+
+<button id="marryBtn" onclick="launchFireworks()">Will You Marry Me? 💍</button>
 </div>
 
 <div class="gallery">
@@ -168,13 +209,18 @@ animation:fall 5s linear infinite;
 <audio id="music" src="yourmusic.mp3" loop></audio>
 
 <script>
+// INTRO
+setTimeout(()=>{
+document.getElementById("intro").style.display="none";
+},3000);
+
 // STARS
 const canvas=document.getElementById("stars");
 const ctx=canvas.getContext("2d");
 canvas.width=window.innerWidth;
 canvas.height=window.innerHeight;
 let stars=[];
-for(let i=0;i<300;i++){
+for(let i=0;i<250;i++){
 stars.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
 }
 function drawStars(){
@@ -189,18 +235,10 @@ ctx.fill();
 setInterval(drawStars,50);
 
 // SEQUENCE
-setTimeout(()=>{document.getElementById("names").style.opacity=1;},2000);
-
-// TYPING EFFECT
-let text="Happy 2 Beautiful Years My Love 💙 Forever Begins With You.";
-let i=0;
-function type(){
-if(i<text.length){
-document.getElementById("typing").innerHTML+=text.charAt(i);
-i++;
-setTimeout(type,50);
-}}
-setTimeout(type,3000);
+setTimeout(()=>{document.getElementById("names").style.opacity=1;},3500);
+setTimeout(()=>{document.getElementById("message").style.opacity=1;},4500);
+setTimeout(()=>{document.getElementById("countdown").style.opacity=1;},5000);
+setTimeout(()=>{document.getElementById("marryBtn").style.opacity=1;},5500);
 
 // COUNTDOWN
 function updateCountdown(){
@@ -212,42 +250,31 @@ document.getElementById("countdown").innerText=diff+" Days Together ❤️";
 setInterval(updateCountdown,1000);
 updateCountdown();
 
-// PHOTO CINEMATIC
-setTimeout(()=>{document.getElementById("p1").style.opacity=1;document.getElementById("p1").style.transform="translateY(0)";},5000);
-setTimeout(()=>{document.getElementById("p2").style.opacity=1;document.getElementById("p2").style.transform="translateY(0)";},6000);
-setTimeout(()=>{document.getElementById("p3").style.opacity=1;document.getElementById("p3").style.transform="translateY(0)";},7000);
-setTimeout(()=>{document.getElementById("p4").style.opacity=1;document.getElementById("p4").style.transform="translateY(0)";},8000);
-setTimeout(()=>{document.getElementById("p5").style.opacity=1;document.getElementById("p5").style.transform="translateY(0)";startKissRain();},9000);
+// PHOTO POP
+setTimeout(()=>{showPhoto("p1");},6000);
+setTimeout(()=>{showPhoto("p2");},7000);
+setTimeout(()=>{showPhoto("p3");},8000);
+setTimeout(()=>{showPhoto("p4");},9000);
+setTimeout(()=>{showPhoto("p5");},10000);
+
+function showPhoto(id){
+let img=document.getElementById(id);
+img.style.opacity=1;
+img.style.transform="translateY(0)";
+}
 
 // FIREWORKS
 function launchFireworks(){
-for(let i=0;i<200;i++){
+for(let i=0;i<150;i++){
 let f=document.createElement("div");
-f.className="firework";
+f.className="fire";
 f.style.left=Math.random()*100+"vw";
-f.style.top=Math.random()*50+"vh";
+f.style.top=Math.random()*60+"vh";
 f.style.background="hsl("+Math.random()*360+",100%,50%)";
 document.body.appendChild(f);
 setTimeout(()=>f.remove(),1000);
 }
-}
-
-// KISS RAIN
-function startKissRain(){
-setInterval(()=>{
-let kiss=document.createElement("div");
-kiss.className="kiss";
-kiss.innerHTML="😘";
-kiss.style.left=Math.random()*100+"vw";
-document.body.appendChild(kiss);
-setTimeout(()=>kiss.remove(),5000);
-},300);
-}
-
-// MARRY BUTTON
-function marryMe(){
-launchFireworks();
-alert("She Said YES ❤️");
+alert("Forever With You ❤️");
 }
 
 // MUSIC
