@@ -2,87 +2,131 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Hema 💙 Venkat | Ocean Love</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500&family=Poppins:wght@300;600&display=swap" rel="stylesheet">
+<title>Hema 💙 Venkat | Forever By The Sea</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;700&family=Montserrat:wght@300;400&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
-body{
-overflow:hidden;
-font-family:'Poppins',sans-serif;
-color:white;
-text-align:center;
-background:linear-gradient(to top,#00111a,#00334d,#ff9966);
+html{scroll-behavior:smooth;}
+body{font-family:'Montserrat',sans-serif;color:white;background:black;overflow-x:hidden;}
+
+/* VIDEO BACKGROUND */
+video{
+position:fixed;
+right:0;
+bottom:0;
+min-width:100%;
+min-height:100%;
+object-fit:cover;
+z-index:-3;
 }
 
-#photoBackground{
+.overlay{
 position:fixed;
 width:100%;
 height:100%;
-background-size:cover;
-background-position:center;
-z-index:-3;
-opacity:0.35;
-transition:opacity 2s;
+background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
+z-index:-2;
 }
 
+/* SECTION */
 section{
-height:100vh;
+min-height:100vh;
 display:flex;
 flex-direction:column;
 justify-content:center;
 align-items:center;
-padding:40px;
-z-index:5;
-position:relative;
+text-align:center;
+padding:60px 20px;
 }
 
 h1{
-font-size:55px;
 font-family:'Playfair Display',serif;
-text-shadow:0 0 25px #ff99cc;
+font-size:60px;
+margin-bottom:20px;
 }
 
 p{
-max-width:700px;
+max-width:800px;
+line-height:1.8;
 font-size:20px;
+}
+
+/* TIMELINE */
+.timeline{
+max-width:800px;
+margin-top:40px;
+text-align:left;
+}
+.timeline div{
+margin:25px 0;
+padding-left:20px;
+border-left:2px solid rgba(255,255,255,0.4);
+}
+
+/* GALLERY */
+.gallery{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+gap:20px;
+width:90%;
+margin-top:40px;
+}
+.gallery img{
+width:100%;
+height:350px;
+object-fit:cover;
+border-radius:15px;
+transition:0.5s;
+}
+.gallery img:hover{
+transform:scale(1.05);
+}
+
+/* LOVE LETTER */
+.letter{
+font-family:'Dancing Script',cursive;
+font-size:28px;
+max-width:800px;
+margin-top:30px;
 line-height:1.8;
 }
 
+/* BUTTON */
 button{
-padding:12px 30px;
-border:none;
-border-radius:30px;
-background:#ff99cc;
-color:black;
-font-weight:bold;
+margin-top:30px;
+padding:12px 35px;
+border-radius:40px;
+border:1px solid white;
+background:transparent;
+color:white;
+font-size:16px;
 cursor:pointer;
-margin-top:20px;
+transition:0.4s;
 }
-
 button:hover{
 background:white;
+color:black;
 }
 
-canvas{
+/* SPARKLES */
+.sparkle{
 position:fixed;
-bottom:0;
-left:0;
-z-index:-2;
+width:3px;
+height:3px;
+background:white;
+border-radius:50%;
+opacity:0.6;
+animation:rise 10s linear infinite;
+}
+@keyframes rise{
+0%{transform:translateY(100vh);opacity:0;}
+50%{opacity:0.8;}
+100%{transform:translateY(-10vh);opacity:0;}
 }
 
-.heart{
-position:fixed;
-color:#ff4d6d;
-animation:float 8s linear infinite;
-z-index:5;
-}
-
-@keyframes float{
-0%{transform:translateY(100vh);}
-100%{transform:translateY(-10vh);}
-}
-
+/* PROPOSAL */
 #proposal{
 display:none;
 position:fixed;
@@ -99,88 +143,79 @@ z-index:10;
 
 <body>
 
-<div id="photoBackground"></div>
-<canvas id="ocean"></canvas>
+<!-- REALISTIC OCEAN VIDEO -->
+<video autoplay muted loop>
+<source src="https://cdn.coverr.co/videos/coverr-waves-at-the-beach-1573/1080p.mp4" type="video/mp4">
+</video>
+
+<div class="overlay"></div>
 
 <section>
-<h1>Hema Dharshini ❤️</h1>
+<h1>Hema Dharshini</h1>
 <p>
-Like the ocean waves touching the shore,<br>
-my heart keeps coming back to you.<br><br>
-These 2 years feel like a sunset by the beach —
-peaceful, magical, infinite.
+Like the ocean meeting the horizon,  
+our story feels infinite.  
+Two beautiful years, filled with love, growth, understanding and peace.
 </p>
+</section>
 
-<button onclick="openProposal()">Will You Walk With Me Forever? 💍</button>
-<button onclick="speakLove()">Hear My Heart 💙</button>
+<section>
+<h1>Our Journey</h1>
+<div class="timeline">
+<div><strong>Day One:</strong> A simple conversation that changed everything.</div>
+<div><strong>First Trip:</strong> Laughing without worrying about time.</div>
+<div><strong>One Year:</strong> Stronger than ever.</div>
+<div><strong>Today:</strong> Two years of beautiful love by the sea.</div>
+</div>
+</section>
+
+<section>
+<h1>Our Moments</h1>
+<div class="gallery">
+<img src="photo1.jpg">
+<img src="photo2.jpg">
+<img src="photo3.jpg">
+<img src="photo4.jpg">
+<img src="photo5.jpg">
+</div>
+</section>
+
+<section>
+<h1>My Letter To You</h1>
+<div class="letter">
+Hema,  
+You are my calm after every storm,  
+my golden sunset after every long day.  
+These two years are only the beginning  
+of a lifetime I want to spend beside you.  
+Forever, by the sea, with you.
+</div>
+
+<button onclick="openProposal()">Will You Stay Forever?</button>
+<button onclick="readLetter()">Hear My Heart 💙</button>
 </section>
 
 <div id="proposal">
-<h1>Forever With You 🌊❤️</h1>
-<button onclick="celebrate()">YES 💖</button>
-<button onclick="closeProposal()">Always YES 💙</button>
+<h1>Forever Begins With You 💍</h1>
+<button onclick="closeProposal()">Always ❤️</button>
 </div>
 
 <audio id="music" src="yourmusic.mp3" loop></audio>
 
 <script>
-// AUTO MUSIC
+// AUTO MUSIC AFTER FIRST CLICK
 document.body.addEventListener("click",function(){
 document.getElementById("music").play();
 },{once:true});
 
-// BACKGROUND SLIDESHOW
-let images=["photo1.jpg","photo2.jpg","photo3.jpg","photo4.jpg","photo5.jpg"];
-let i=0;
-function changeBg(){
-document.getElementById("photoBackground").style.backgroundImage=
-"url('"+images[i]+"')";
-i=(i+1)%images.length;
-}
-changeBg();
-setInterval(changeBg,5000);
-
-// FLOATING HEARTS
+// SPARKLES
 setInterval(()=>{
-for(let h=0;h<6;h++){
-let heart=document.createElement("div");
-heart.className="heart";
-heart.innerHTML="❤️";
-heart.style.left=Math.random()*100+"vw";
-heart.style.fontSize=Math.random()*30+15+"px";
-document.body.appendChild(heart);
-setTimeout(()=>heart.remove(),8000);
-}
-},700);
-
-// REAL OCEAN WAVE ANIMATION
-const canvas=document.getElementById("ocean");
-const ctx=canvas.getContext("2d");
-canvas.width=window.innerWidth;
-canvas.height=250;
-
-let waveOffset=0;
-
-function drawOcean(){
-ctx.clearRect(0,0,canvas.width,canvas.height);
-ctx.fillStyle="#003366";
-ctx.beginPath();
-ctx.moveTo(0,100);
-
-for(let x=0;x<=canvas.width;x++){
-let y=20*Math.sin((x+waveOffset)*0.02)+100;
-ctx.lineTo(x,y);
-}
-
-ctx.lineTo(canvas.width,canvas.height);
-ctx.lineTo(0,canvas.height);
-ctx.closePath();
-ctx.fill();
-
-waveOffset+=2;
-requestAnimationFrame(drawOcean);
-}
-drawOcean();
+let s=document.createElement("div");
+s.className="sparkle";
+s.style.left=Math.random()*100+"vw";
+document.body.appendChild(s);
+setTimeout(()=>s.remove(),10000);
+},500);
 
 // PROPOSAL
 function openProposal(){
@@ -189,16 +224,13 @@ document.getElementById("proposal").style.display="flex";
 function closeProposal(){
 document.getElementById("proposal").style.display="none";
 }
-function celebrate(){
-alert("Forever Together By The Ocean 🌊💙");
-closeProposal();
-}
 
-// AI VOICE
-function speakLove(){
-let msg="Hema, like the waves return to the shore, my heart always returns to you. I love you infinitely.";
+// AI VOICE LETTER
+function readLetter(){
+let msg="Hema, you are my calm after every storm and my forever by the sea. I love you endlessly.";
 let speech=new SpeechSynthesisUtterance(msg);
 speech.rate=0.9;
+speech.pitch=1;
 window.speechSynthesis.speak(speech);
 }
 </script>
