@@ -9,10 +9,15 @@
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:'Montserrat',sans-serif;color:white;background:black;overflow-x:hidden;}
+body{
+font-family:'Montserrat',sans-serif;
+color:white;
+overflow-x:hidden;
+background:black;
+}
 
 /* VIDEO BACKGROUND */
-video{
+#bgVideo{
 position:fixed;
 right:0;
 bottom:0;
@@ -22,6 +27,7 @@ object-fit:cover;
 z-index:-3;
 }
 
+/* DARK OVERLAY */
 .overlay{
 position:fixed;
 width:100%;
@@ -30,7 +36,7 @@ background:linear-gradient(to top, rgba(0,0,0,0.8), rgba(0,0,0,0.4));
 z-index:-2;
 }
 
-/* SECTION */
+/* SECTION STYLE */
 section{
 min-height:100vh;
 display:flex;
@@ -41,12 +47,20 @@ text-align:center;
 padding:60px 20px;
 }
 
+/* HEADINGS */
 h1{
 font-family:'Playfair Display',serif;
 font-size:60px;
 margin-bottom:20px;
 }
 
+h2{
+font-family:'Playfair Display',serif;
+font-size:40px;
+margin-bottom:20px;
+}
+
+/* TEXT */
 p{
 max-width:800px;
 line-height:1.8;
@@ -78,7 +92,7 @@ width:100%;
 height:350px;
 object-fit:cover;
 border-radius:15px;
-transition:0.5s;
+transition:0.4s;
 }
 .gallery img:hover{
 transform:scale(1.05);
@@ -126,7 +140,7 @@ animation:rise 10s linear infinite;
 100%{transform:translateY(-10vh);opacity:0;}
 }
 
-/* PROPOSAL */
+/* PROPOSAL MODAL */
 #proposal{
 display:none;
 position:fixed;
@@ -143,34 +157,40 @@ z-index:10;
 
 <body>
 
-<!-- REALISTIC OCEAN VIDEO -->
-<video autoplay muted loop>
-<source src="https://cdn.coverr.co/videos/coverr-waves-at-the-beach-1573/1080p.mp4" type="video/mp4">
+<!-- OCEAN VIDEO -->
+<video autoplay muted loop playsinline id="bgVideo">
+  <source src="ocean.mp4" type="video/mp4">
 </video>
 
 <div class="overlay"></div>
 
+<!-- HERO -->
 <section>
 <h1>Hema Dharshini</h1>
 <p>
-Like the ocean meeting the horizon,  
-our story feels infinite.  
-Two beautiful years, filled with love, growth, understanding and peace.
+Like the ocean meeting the horizon,
+our love feels infinite.
+Two beautiful years of laughter, growth,
+understanding and peace.
 </p>
+<button onclick="openProposal()">Will You Stay With Me Forever?</button>
+<button onclick="readLetter()">Hear My Heart 💙</button>
 </section>
 
+<!-- TIMELINE -->
 <section>
-<h1>Our Journey</h1>
+<h2>Our Journey</h2>
 <div class="timeline">
 <div><strong>Day One:</strong> A simple conversation that changed everything.</div>
-<div><strong>First Trip:</strong> Laughing without worrying about time.</div>
-<div><strong>One Year:</strong> Stronger than ever.</div>
-<div><strong>Today:</strong> Two years of beautiful love by the sea.</div>
+<div><strong>First Month:</strong> Long calls and endless smiles.</div>
+<div><strong>One Year:</strong> Stronger, deeper, closer.</div>
+<div><strong>Today:</strong> Two beautiful years by the sea.</div>
 </div>
 </section>
 
+<!-- GALLERY -->
 <section>
-<h1>Our Moments</h1>
+<h2>Our Moments</h2>
 <div class="gallery">
 <img src="photo1.jpg">
 <img src="photo2.jpg">
@@ -180,8 +200,9 @@ Two beautiful years, filled with love, growth, understanding and peace.
 </div>
 </section>
 
+<!-- LOVE LETTER -->
 <section>
-<h1>My Letter To You</h1>
+<h2>My Letter To You</h2>
 <div class="letter">
 Hema,  
 You are my calm after every storm,  
@@ -190,11 +211,9 @@ These two years are only the beginning
 of a lifetime I want to spend beside you.  
 Forever, by the sea, with you.
 </div>
-
-<button onclick="openProposal()">Will You Stay Forever?</button>
-<button onclick="readLetter()">Hear My Heart 💙</button>
 </section>
 
+<!-- PROPOSAL -->
 <div id="proposal">
 <h1>Forever Begins With You 💍</h1>
 <button onclick="closeProposal()">Always ❤️</button>
@@ -208,7 +227,7 @@ document.body.addEventListener("click",function(){
 document.getElementById("music").play();
 },{once:true});
 
-// SPARKLES
+// SPARKLE ANIMATION
 setInterval(()=>{
 let s=document.createElement("div");
 s.className="sparkle";
@@ -225,7 +244,7 @@ function closeProposal(){
 document.getElementById("proposal").style.display="none";
 }
 
-// AI VOICE LETTER
+// AI VOICE
 function readLetter(){
 let msg="Hema, you are my calm after every storm and my forever by the sea. I love you endlessly.";
 let speech=new SpeechSynthesisUtterance(msg);
