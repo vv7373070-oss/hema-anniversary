@@ -2,36 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Venkat ❤️ Hema - Season 2</title>
+<title>Venkat ❤️ Hema</title>
 
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600&family=Montserrat:wght@300;400&family=Dancing+Script:wght@500&display=swap" rel="stylesheet">
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
 body{
 background:black;
 color:white;
 overflow-x:hidden;
 font-family:'Montserrat',sans-serif;
-}
-
-/* SMOKE OVERLAY */
-.smoke{
-position:fixed;
-top:0;
-left:0;
-width:200%;
-height:200%;
-background:radial-gradient(circle at 30% 30%, rgba(255,255,255,0.05), transparent 60%);
-animation:smokeMove 25s linear infinite;
-pointer-events:none;
-z-index:1;
-}
-
-@keyframes smokeMove{
-0%{transform:translate(0,0);}
-50%{transform:translate(-200px,-100px);}
-100%{transform:translate(0,0);}
 }
 
 /* INTRO */
@@ -44,21 +26,33 @@ display:flex;
 justify-content:center;
 align-items:center;
 z-index:100;
-transition:2s;
 }
 
 .netflix{
 font-family:'Cinzel',serif;
-font-size:80px;
-letter-spacing:10px;
+font-size:70px;
+letter-spacing:8px;
 color:#e50914;
 animation:reveal 3s forwards;
 opacity:0;
 }
 
 @keyframes reveal{
-0%{letter-spacing:50px;opacity:0;filter:blur(10px);}
-100%{letter-spacing:10px;opacity:1;filter:blur(0);}
+0%{letter-spacing:40px;opacity:0;filter:blur(10px);}
+100%{letter-spacing:8px;opacity:1;filter:blur(0);}
+}
+
+/* HEART RAIN */
+.heart{
+position:fixed;
+color:#ff4d6d;
+font-size:25px;
+animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+0%{transform:translateY(-10vh);}
+100%{transform:translateY(110vh);}
 }
 
 /* HERO */
@@ -69,6 +63,7 @@ flex-direction:column;
 justify-content:center;
 align-items:center;
 text-align:center;
+padding:40px;
 opacity:0;
 transition:2s;
 }
@@ -77,8 +72,8 @@ transition:2s;
 
 .hero h1{
 font-family:'Cinzel',serif;
-font-size:65px;
-margin-bottom:20px;
+font-size:60px;
+margin-bottom:15px;
 }
 
 .hero p{
@@ -86,29 +81,40 @@ font-size:20px;
 opacity:0.8;
 }
 
-/* SEASON TEXT */
-.season{
+/* LOVE LETTER */
+.section{
 min-height:100vh;
 display:flex;
+flex-direction:column;
 justify-content:center;
 align-items:center;
-font-size:60px;
+text-align:center;
+padding:40px;
+}
+
+.section h2{
 font-family:'Cinzel',serif;
-opacity:0;
-transition:2s;
+font-size:45px;
+margin-bottom:20px;
+}
+
+.section p{
+max-width:800px;
+font-size:22px;
+line-height:2;
+}
+
+/* QUESTIONS */
+.questions{
+font-family:'Dancing Script',cursive;
+font-size:30px;
+line-height:2.3;
 }
 
 /* MEMORIES */
 .memories{
-min-height:100vh;
 padding:80px 20px;
 text-align:center;
-}
-
-.memories h2{
-font-family:'Cinzel',serif;
-font-size:45px;
-margin-bottom:40px;
 }
 
 .gallery{
@@ -124,49 +130,62 @@ width:100%;
 height:350px;
 object-fit:cover;
 border-radius:15px;
-transition:0.6s;
+transition:0.5s;
 }
 
 .gallery img:hover{
 transform:scale(1.05);
 }
 
-/* FADE BLACK */
-.fadeBlack{
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background:black;
-z-index:90;
-opacity:0;
-pointer-events:none;
-transition:1.5s;
+button{
+margin-top:30px;
+padding:12px 30px;
+border-radius:30px;
+border:none;
+background:#e50914;
+color:white;
+font-size:16px;
+cursor:pointer;
 }
 </style>
 </head>
 
 <body>
 
-<div class="smoke"></div>
-<div class="fadeBlack" id="fade"></div>
-
 <div id="intro">
-<div class="netflix">VENKAT</div>
+<div class="netflix">VENKAT ❤️ HEMA</div>
 </div>
 
 <section class="hero" id="hero">
-<h1>Venkat ❤️ Hema</h1>
-<p>A Love Story Beyond Time</p>
+<h1>Our Love Story</h1>
+<p>Two Hearts. One Destiny.</p>
+<button onclick="playMusic()">Play Our Story 🎵</button>
 </section>
 
-<section class="season" id="season">
-Season 2 Begins…
+<section class="section">
+<h2>My Love Letter 💌</h2>
+<p>
+My Hema 💙<br><br>
+Two years ago, love entered my life quietly — but it changed everything loudly inside my heart.<br><br>
+You became my peace in chaos, my strength in weakness, and the future I dream of building.<br><br>
+With you, love is not just a feeling — it is comfort, safety, and forever.<br><br>
+If I had to choose again, in every lifetime, I would still choose you. ❤️
+</p>
+</section>
+
+<section class="section">
+<h2>Questions From My Heart 💞</h2>
+<div class="questions">
+Will you walk beside me forever? 💫<br>
+Will you laugh with me on my happiest days? 😊<br>
+Will you hold my hand in every storm? 🤝<br>
+Will you build a lifetime with me? 💍<br>
+Will you stay… always? ❤️
+</div>
 </section>
 
 <section class="memories">
-<h2>Our Beautiful Memories</h2>
+<h2 style="font-family:'Cinzel';font-size:45px;margin-bottom:30px;">Our Beautiful Memories</h2>
 <div class="gallery">
 <img src="photo1.jpg">
 <img src="photo2.jpg">
@@ -179,53 +198,29 @@ Season 2 Begins…
 <audio id="music" src="yourmusic.mp3" loop></audio>
 
 <script>
-// MUSIC FADE IN
-function fadeInMusic(){
-let music=document.getElementById("music");
-music.volume=0;
-music.play();
-let fade=setInterval(()=>{
-if(music.volume<1){
-music.volume+=0.02;
-}else{
-clearInterval(fade);
-}
-},200);
-}
-
-// TRAILER VOICE
-function trailerVoice(){
-let msg="In a world where love changed everything... this is their story.";
-let speech=new SpeechSynthesisUtterance(msg);
-speech.rate=0.9;
-speech.pitch=0.8;
-speechSynthesis.speak(speech);
-}
-
-// FADE TRANSITION
-function fadeToBlack(){
-let f=document.getElementById("fade");
-f.style.opacity=1;
-setTimeout(()=>{f.style.opacity=0;},1500);
-}
-
-// SEQUENCE
-setTimeout(()=>{
-document.getElementById("intro").style.opacity=0;
-fadeInMusic();
-trailerVoice();
-},3500);
-
+// INTRO SEQUENCE
 setTimeout(()=>{
 document.getElementById("intro").style.display="none";
 document.getElementById("hero").classList.add("show");
-fadeToBlack();
-},6000);
+startHeartRain();
+},3500);
 
-setTimeout(()=>{
-document.getElementById("season").style.opacity=1;
-fadeToBlack();
-},10000);
+// HEART RAIN
+function startHeartRain(){
+setInterval(()=>{
+let heart=document.createElement("div");
+heart.className="heart";
+heart.innerHTML="❤️";
+heart.style.left=Math.random()*100+"vw";
+document.body.appendChild(heart);
+setTimeout(()=>heart.remove(),5000);
+},300);
+}
+
+// MUSIC
+function playMusic(){
+document.getElementById("music").play();
+}
 </script>
 
 </body>
